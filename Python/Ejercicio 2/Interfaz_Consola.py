@@ -4,13 +4,11 @@ from Atencion_de_Pedidos import AtencionPedidos
 
 def mostrar_menu():
     print("\n--- Menú principal ---")
-    print("1. Agregar un nuevo plato")
-    print("2. Mostrar platos disponibles")
-    print("3. Agregar nuevo pedido")
-    print("4. Mostrar pedidos pendientes")
-    print("5. Atender pedido")
-    print("6. Ganancias")
-    print("7. Salir")
+    print("1. Agregar nuevo pedido")
+    print("2. Mostrar pedidos pendientes")
+    print("3. Atender pedido")
+    print("4. Ganancias")
+    print("5. Salir")
 
 def main():
     gestion_platos = GestionPlatos()
@@ -22,32 +20,26 @@ def main():
         opcion = input("Seleccione una opción: ")
 
         if opcion == "1":
-            nombre = input("Ingrese el nombre del plato: ")
+            cliente = input("Ingrese el nombre del cliente: ")
+            plato = input("Ingrese el nombre del plato: ")
             precio = float(input("Ingrese el precio del plato: "))
-            gestion_platos.agregar_plato(nombre, precio)
+            if not gestion_platos.existe_plato(plato):
+                gestion_platos.agregar_plato(plato, precio)
+            gestion_pedidos.agregar_pedido(cliente, plato)
+            print("Pedido registrado correctamente.")
 
         elif opcion == "2":
+            gestion_pedidos.mostrar_pedidos()
             gestion_platos.mostrar_menu()
 
         elif opcion == "3":
-            cliente = input("Ingrese el nombre del cliente: ")
-            plato = input("Ingrese el nombre del plato: ")
-            if gestion_platos.existe_plato(plato):
-                gestion_pedidos.agregar_pedido(cliente, plato)
-            else:
-                print("El plato no existe en el menú.")
-
-        elif opcion == "4":
-            gestion_pedidos.mostrar_pedidos()
-
-        elif opcion == "5":
             pedido = gestion_pedidos.atender_pedido()
             atencion.atender(pedido, gestion_platos)
 
-        elif opcion == "6":
+        elif opcion == "4":
             atencion.mostrar_ganancias()
 
-        elif opcion == "7":
+        elif opcion == "5":
             print("Saliendo del sistema...")
             break
 
