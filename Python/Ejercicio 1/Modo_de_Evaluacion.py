@@ -20,7 +20,7 @@ def iniciar_evaluacion():
             if item["aciertos"] >= 5:
                 print(f'Felicidades! Se ha aprendido la palabra "{item["palabra"]}". Esta será eliminada')
                 with open("palabras_eliminadas.txt", "a") as f:
-                    f.write(str({item["palabra"]}))
+                    f.write(f"{item["palabra"]}\n")
                 vocabulario.remove(item)
 
         else: 
