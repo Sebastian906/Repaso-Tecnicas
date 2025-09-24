@@ -2,7 +2,7 @@ from Gestion_de_Vocabulario import vocabulario
 
 def iniciar_evaluacion():
     """
-    Función de preguntas al usuario
+    Función de evaluación presentada al usuario
     """
     if not vocabulario:
         print(f'No hay palabras en vocabulario.')
@@ -19,6 +19,8 @@ def iniciar_evaluacion():
             print("Correcto!")
             if item["aciertos"] >= 5:
                 print(f'Felicidades! Se ha aprendido la palabra "{item["palabra"]}". Esta será eliminada')
+                with open("palabras_eliminadas.txt", "a") as f:
+                    f.write(str({item["palabra"]}))
                 vocabulario.remove(item)
 
         else: 
