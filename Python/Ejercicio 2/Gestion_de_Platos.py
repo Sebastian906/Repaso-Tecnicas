@@ -30,6 +30,8 @@ class GestionPlatos:
         else:
             for plato in self.menu.values():
                 print(plato)
+            with open("menu.txt", "a") as f:
+                f.write(f"{str(plato)}\n")
 
     def existe_plato(self, nombre):
         """
