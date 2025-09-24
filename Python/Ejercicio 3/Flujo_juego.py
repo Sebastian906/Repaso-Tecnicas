@@ -2,7 +2,6 @@ from Gestion_pila_cartas import crear_baraja, sacar_carta
 from Interfaz_consola import pedir_numero_jugadores, pedir_nombre_jugador, mostrar_mensaje, preguntar_carta, mostrar_cartas_restantes, mostrar_ganador
 
 def jugar_blackjack():
-    # --- Lógica de repetición en caso de empate ---
     jugadores = None
     ronda = 1
     while True:
@@ -14,14 +13,12 @@ def jugar_blackjack():
                 nombre = pedir_nombre_jugador(i+1)
                 jugadores.append({"nombre": nombre, "puntos": 0, "activo": True})
         else:
-            # Reiniciar puntos y estado solo para los empatados
             for jugador in jugadores:
                 jugador["puntos"] = 0
                 jugador["activo"] = True
             mostrar_mensaje(f"\n--- RONDA DE DESEMPATE #{ronda} entre: {', '.join(j['nombre'] for j in jugadores)} ---")
             ronda += 1
 
-        # Turnos
         for jugador in jugadores:
             mostrar_mensaje(f"--- Turno de {jugador['nombre']} ---")
             while jugador["activo"]:
@@ -42,7 +39,6 @@ def jugar_blackjack():
                     mostrar_mensaje(f"{jugador['nombre']} se planta con {jugador['puntos']} puntos.")
                     jugador["activo"] = False
 
-        # Determinar ganadores válidos
         jugadores_validos = [j for j in jugadores if j["puntos"] <= 21]
         if not jugadores_validos:
             mostrar_mensaje("Nadie ganó esta ronda.")
