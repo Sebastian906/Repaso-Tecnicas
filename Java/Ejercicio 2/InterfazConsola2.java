@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class InterfazConsola {
+public class InterfazConsola2 {
     public static void main(String[] args) {
         GestionPlatos gestionPlatos = new GestionPlatos();
         GestionPedidos gestionPedidos = new GestionPedidos();
